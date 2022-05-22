@@ -272,7 +272,7 @@ export default defineComponent({
         "consumerism.options.frugal",
         "consumerism.options.normal",
         "consumerism.options.lush",
-         "consumerism.options.none",
+        "consumerism.options.none",
       ]),
       nutritionOptions: this.i18nOptions([
         "nutrition.options.CARNIVORE",

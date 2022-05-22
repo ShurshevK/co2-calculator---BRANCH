@@ -95,6 +95,7 @@ const intensityFactors = Estimate.of(
       frugal: 1 - 0.341,
       normal: 1,
       lush: 1 + 0.341,
+      none: 0,
     },
     "https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule",
     {
@@ -106,14 +107,6 @@ const intensityFactors = Estimate.of(
 )
 
 export const estimateEmissions = (req: ConsumerismEstimationParams): EstimationResponse => {
-  if (req.intensity === "none") {
-    return {
-      estimatedEmissions: 0,
-      unit: Units.KG_CO2E_PER_YEAR,
-      // @ts-ignore
-      sources: {},
-    }
-  }
   const estimatedEmissions = Estimate.combine(
     energyConsumptionForConsumerismInGermany,
     energyConsumptionForProductsInGermany,
