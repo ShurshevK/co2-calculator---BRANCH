@@ -142,17 +142,6 @@
       reloadBtn.addEventListener("click", () => {
         window.location.href = window.location.href;
       })
-      function calKGDaily() {
-        let progressValueEl = document.querySelector(".el-progress-bar__innerText");
-        let progressValue = Number(progressValueEl.textContent.replaceAll(",", ".").trim().slice(0, -9).trim());
-        let progressValueKGDaily = (progressValue * 1000) / 365;
-        progressValueKGDaily = progressValueKGDaily.toFixed(2).toLocaleString('en-IN');
-        let customOutputElDescEl = document.querySelector(".customOutputElDesc");
-        customOutputElDescEl.innerHTML = "You emit " + progressValueKGDaily + "kg of greenhouse gases into the air every day. See what your carbon footprint really looks like.";
-        let customOutputValueEl = document.querySelector(".customOutputValue");
-        customOutputValueEl.innerHTML = progressValueKGDaily +  " KG CO<sub>2</sub>e/day";
-      }
-      calKGDaily();
     })
   </script>
 </body>

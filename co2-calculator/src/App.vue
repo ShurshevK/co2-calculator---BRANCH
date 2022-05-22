@@ -33,10 +33,10 @@
 
     <div class="customOutputEl">
       <div class="customOutputElDesc">
-        You emit 517.81 kg of greenhouse gases into the air every day. See what your carbon footprint really looks like.
+        You emit {{ (totalEmissions / 365).toFixed(2) }} kg of greenhouse gases into the air every day. See what your carbon footprint really looks like.
       </div>
-      <div class="customOutputValue">
-        517.81 KG CO<sub>2</sub>e/day
+      <div class="customOutputValue" >
+        {{ (totalEmissions / 365).toFixed(2) }} KG CO<sub>2</sub>e/day
       </div>
     </div>
 
