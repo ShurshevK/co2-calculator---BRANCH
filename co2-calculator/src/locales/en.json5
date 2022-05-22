@@ -48,6 +48,7 @@
       FLEXITARIAN: "Plant based",
       VEGETARIAN: "Vegetarian",
       VEGAN: "Vegan",
+      none: "none",
     },
   },
   consumerism: {
@@ -56,6 +57,7 @@
       frugal: "Frugal",
       normal: "Normal",
       lush: "Lush",
+      none: "none",
     },
   },
 }

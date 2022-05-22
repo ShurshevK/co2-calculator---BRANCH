@@ -48,6 +48,7 @@
       FLEXITARIAN: "Rastlinné",
       VEGETARIAN: "Vegetariánske",
       VEGAN: "Vegánske",
+      none: "none",
     },
   },
   consumerism: {
@@ -56,6 +57,7 @@
       frugal: "Úsporne",
       normal: "Normálne",
       lush: "Hojne",
+      none: "none",
     },
   },
 }

@@ -18,6 +18,7 @@ const [
 ] = co2eq
 
 enum Diet {
+  none = "none",
   VEGAN = "VEGAN",
   VEGETARIAN = "VEGETARIAN",
   FLEXITARIAN = "FLEXITARIAN",
@@ -44,6 +45,8 @@ const dietToMealType = (diet: Diet): string => {
       return bloomDefinitions.MEAL_TYPE_MEAT_LOW
     case Diet.CARNIVORE:
       return bloomDefinitions.MEAL_TYPE_MEAT_HIGH
+    default:
+      return "none"
   }
 }
 
@@ -61,6 +64,10 @@ const dietImpacts = new ValidUntilSource(
 
 export const estimateEmissions = (req: NutritionEstimationParams): EstimationResponse => {
   const mealType = dietToMealType(req.diet as Diet)
+  if (mealType === "none") {
+    console.log("estimateEmissions", "none")
+    return {estimatedEmissions: 0, unit: Units.KG_CO2E_PER_YEAR, sources: [dietImpacts.toJson()]}
+  }
   const estimatedEmissions = Math.round(
     mealCarbonModel.carbonEmissions({mealType, numberOfMeals: 365 * 3}),
   )

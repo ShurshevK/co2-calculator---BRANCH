@@ -20,6 +20,7 @@ export const ConsumerismEstimationParams = t.type({
       frugal: null,
       normal: null,
       lush: null,
+      none: null,
     }),
   ),
 })
@@ -105,6 +106,14 @@ const intensityFactors = Estimate.of(
 )
 
 export const estimateEmissions = (req: ConsumerismEstimationParams): EstimationResponse => {
+  if (req.intensity === "none") {
+    return {
+      estimatedEmissions: 0,
+      unit: Units.KG_CO2E_PER_YEAR,
+      // @ts-ignore
+      sources: {},
+    }
+  }
   const estimatedEmissions = Estimate.combine(
     energyConsumptionForConsumerismInGermany,
     energyConsumptionForProductsInGermany,

@@ -272,12 +272,14 @@ export default defineComponent({
         "consumerism.options.frugal",
         "consumerism.options.normal",
         "consumerism.options.lush",
+         "consumerism.options.none",
       ]),
       nutritionOptions: this.i18nOptions([
         "nutrition.options.CARNIVORE",
         "nutrition.options.FLEXITARIAN",
         "nutrition.options.VEGETARIAN",
         "nutrition.options.VEGAN",
+        "nutrition.options.none",
       ]),
       flying: {
         nShortHauls: 0,
@@ -285,7 +287,7 @@ export default defineComponent({
         nLongHauls: 0,
       },
       nutrition: {
-        diet: "VEGAN",
+        diet: "none",
       },
       driving: {
         weeklyAverageDistance: 0,
@@ -305,7 +307,7 @@ export default defineComponent({
       } as electricity.ElectricityEstimationParams,
       consumerism: {
         country: "Germany",
-        intensity: "frugal",
+        intensity: "none",
       } as consumerism.ConsumerismEstimationParams,
       referenceEmissions: 15_000,
       referenceAverageEmissions: 7_700,
