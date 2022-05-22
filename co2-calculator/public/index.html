@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>KALKULAČKA CO2</title>
+  <link rel="icon" href="<%= BASE_URL %>favicon.png" />
+  <style>
+    #app {
+      margin: 0 !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+    }
+
+    .background-overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100% !important;
+    }
+
+    .total,
+    .header {
+      background-color: transparent !important;
+      z-index: 1 !important;
+    }
+
+    .el-progress-bar__inner,
+    .el-progress-bar__outer {
+      background-color: #fc5b3f !important;
+    }
+
+    .reload-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border: 1px solid black;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-left: 10rem;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+    }
+
+    .question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #questions {
+      margin-bottom: 4rem;
+    }
+
+    .bottom-header {
+      margin-top: -9rem;
+    }
+
+    .emissions {
+      margin: 0 !important;
+    }
+
+    .customOutputEl {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 15rem;
+    }
+
+    .customOutputElDesc {
+      width: 50%;
+      color: #191a1a;
+    }
+
+    .customOutputValue {
+      font-size: 2em;
+      font-weight: 400;
+      color: #191a1a;
+      border: 1px solid #2c2c2c;
+    }
+
+    .total {
+      display: none;
+    }
+  </style>
+  <!-- Google Tag Manager -->
+  <script>
+    ; (function (w, d, s, l, i) {
+      w[l] = w[l] || []
+      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" })
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != "dataLayer" ? "&l=" + l : ""
+      j.async = true
+      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+      f.parentNode.insertBefore(j, f)
+    })(window, document, "script", "dataLayer", "GTM-P4GHH3F")
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <div class="background-overlay"></div>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P4GHH3F" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without
+        JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.clear()
+      let progressEl = document.querySelector(".el-progress-bar__inner");
+      let bgOverlayEl = document.querySelector(".background-overlay");
+      bgOverlayEl.setAttribute("style", progressEl.getAttribute("style"));
+      document.addEventListener("click", () => {
+        bgOverlayEl.setAttribute("style", progressEl.getAttribute("style"));
+        calKGDaily();
+      })
+      let allSelectOptions = document.querySelectorAll("select");
+      allSelectOptions.forEach((input)=>{
+        input.addEventListener("change",()=>{
+          bgOverlayEl.setAttribute("style", progressEl.getAttribute("style"));
+        })
+      })
+      let reloadBtn = document.querySelector(".reload-btn");
+      reloadBtn.addEventListener("click", () => {
+        window.location.href = window.location.href;
+      })
+      function calKGDaily() {
+        let progressValueEl = document.querySelector(".el-progress-bar__innerText");
+        let progressValue = Number(progressValueEl.textContent.replaceAll(",", ".").trim().slice(0, -9).trim());
+        let progressValueKGDaily = (progressValue * 1000) / 365;
+        progressValueKGDaily = progressValueKGDaily.toFixed(2).toLocaleString('en-IN');
+        let customOutputElDescEl = document.querySelector(".customOutputElDesc");
+        customOutputElDescEl.innerHTML = "You emit " + progressValueKGDaily + "kg of greenhouse gases into the air every day. See what your carbon footprint really looks like.";
+        let customOutputValueEl = document.querySelector(".customOutputValue");
+        customOutputValueEl.innerHTML = progressValueKGDaily +  " KG CO<sub>2</sub>e/day";
+      }
+      calKGDaily();
+    })
+  </script>
+</body>
+
+</html>
